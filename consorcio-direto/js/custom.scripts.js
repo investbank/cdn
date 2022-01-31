@@ -1,17 +1,16 @@
 // Script da barra de simulação (Range)
-var range = document.getElementByClass("range");
+var slider = document.getElementByClass("slider");
 var print = document.getElementByClass("print");
-print.innerHTML = range.value;
-range.oninput = function() {
+print.innerHTML = slider.value;
+slider.oninput = function() {
     print.innerHTML = parseInt(this.value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 // Disparar o evento manualmente
 var event = new CustomEvent("input");
-range.dispatchEvent(event);
+slider.dispatchEvent(event);
 
 // Cookie
-
 /*
 var purecookieTitle = "Cookies.",
     purecookieDesc = "Ao usar este site, você aceita automaticamente o uso de cookies.",
