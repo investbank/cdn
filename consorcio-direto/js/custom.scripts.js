@@ -1,8 +1,8 @@
 // Puxar/converter valores
-var parcela = document.getElementsByClassName("parcela");
-var credito = document.getElementsByClassName("credito");
-var printParcela = document.getElementsByClassName("printParcela");
-var printCredito = document.getElementsByClassName("printCredito");
+var parcela = document.getElementById("parcela");
+var printParcela = document.getElementById("printParcela");
+var credito = document.getElementById("credito");
+var printCredito = document.getElementById("printCredito");
 
 printParcela.innerHTML = parcela.value;
 printCredito.innerHTML = credito.value;
@@ -16,7 +16,6 @@ credito.oninput = function() {
 }
 
 // Disparar o evento manualmente
-var event = new CustomEvent("input");
 var event = new CustomEvent("input");
 parcela.dispatchEvent(event);
 credito.dispatchEvent(event);
