@@ -1,7 +1,7 @@
 // Puxar/converter valores
 var parcela = document.getElementById("parcela");
-var printParcela = document.getElementById("printParcela");
 var credito = document.getElementById("credito");
+var printParcela = document.getElementById("printParcela");
 var printCredito = document.getElementById("printCredito");
 
 printParcela.innerHTML = parcela.value;
