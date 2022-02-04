@@ -19,3 +19,8 @@ credito.oninput = function() {
 var event = new CustomEvent("input");
 parcela.dispatchEvent(event);
 credito.dispatchEvent(event);
+
+// Disparar o evento da GTAG
+function contratar() {
+    gtag('event', 'contratar', { 'event_category': 'contratar', 'event_label': 'compraragora', 'value': 1 });
+}
