@@ -51,37 +51,37 @@ $(document).ready(function () {
 		}
 	});
 
-	function validarRG(rg) {
-		// Remover os pontos e a letra do dígito verificador
-		rg = rg.replace(/[^\dxX]/gi, '');
-
+	function validarRG(rg){
+		// Remover os pontos e o hífen do RG
+		rg = rg.replace(/[\.-]/g,'');
+	  
 		// Verificar se o RG tem 9 dígitos
-		if (rg.length !== 9) {
-			return false;
+		if(rg.length !== 9){
+		  return false;
 		}
-
+	  
 		// Verificar se o dígito verificador está correto
 		const pesos = [2, 3, 4, 5, 6, 7, 8, 9];
-		let dv = rg.substring(8, 9);
-		if (dv === 'X' || dv === 'x') {
-			dv = 10;
+		let dv = rg.substring(8,9);
+		if(dv === 'X' || dv === 'x') {
+		  dv = 10;
 		} else {
-			dv = parseInt(dv);
+		  dv = parseInt(dv);
 		}
-
+	  
 		const numeros = rg.substring(0, 8);
-
+	  
 		let soma = 0;
-		for (let i = 0; i < numeros.length; i += 1) {
-			soma += parseInt(numeros.charAt(i)) * pesos[i];
+		for(let i = 0; i < numeros.length; i += 1){
+		  soma += parseInt(numeros.charAt(i)) * pesos[i];
 		}
-
+	  
 		const resto = soma % 11;
 		const dvCalculado = (resto < 2) ? 0 : 11 - resto;
-
+	  
 		return dv === dvCalculado;
-	}
-
+	  }
+	  
 	// Mask for filling CPF
 	$(".cpf").mask("000.000.000-00");
 
