@@ -32,13 +32,53 @@ $(document).ready(function() {
     });
 
     // Mask for filling RG
-    $(".rg").mask("00.000.000-W", {
-        translation: {
-            "W": { pattern: /[X0-9]/ }
-        },
-        reverse: true
-    });
+	$('.rg').mask('00.000.000-X', {
+		translation: {
+			'X': {
+				pattern: /[xX\d]/,
+				optional: true
+			}
+		},
+		onKeyPress: function (rg, event, currentField, options) {
+			if (!validarRG(rg)) {
+				currentField.addClass('error');
+			} else {
+				currentField.removeClass('error');
+			}
+		}
+	});
 
+	function validarRG(rg) {
+		// Remover os pontos e a letra do dígito verificador
+		rg = rg.replace(/[^\dxX]/gi, '');
+
+		// Verificar se o RG tem 9 dígitos
+		if (rg.length !== 9) {
+			return false;
+		}
+
+		// Verificar se o dígito verificador está correto
+		const pesos = [2, 3, 4, 5, 6, 7, 8, 9];
+		let dv = rg.substring(8, 9);
+		if (dv === 'X' || dv === 'x') {
+			dv = 10;
+		} else {
+			dv = parseInt(dv);
+		}
+
+		const numeros = rg.substring(0, 8);
+
+		let soma = 0;
+		for (let i = 0; i < numeros.length; i += 1) {
+			soma += parseInt(numeros.charAt(i)) * pesos[i];
+		}
+
+		const resto = soma % 11;
+		const dvCalculado = (resto < 2) ? 0 : 11 - resto;
+
+		return dv === dvCalculado;
+	}
+    
     // Mask for filling CPF
     $(".cpf").mask("000.000.000-00");
 
