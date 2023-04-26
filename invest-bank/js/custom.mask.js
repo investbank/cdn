@@ -40,11 +40,13 @@ $(document).ready(function () {
 			}
 		},
 		onKeyPress: function (rg, event, currentField, options) {
-			if (!validarRG(rg)) {
-				currentField.addClass('error');
-				alert('RG inválido!');
-			} else {
-				currentField.removeClass('error');
+			if (rg.length === 9) {
+				if (!validarRG(rg)) {
+					currentField.addClass('error');
+					alert('RG inválido!');
+				} else {
+					currentField.removeClass('error');
+				}
 			}
 		}
 	});
