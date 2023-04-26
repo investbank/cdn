@@ -32,7 +32,7 @@ $(document).ready(function () {
 	});
 
 	// Mask for filling RG
-	$('#rg').mask('00.000.000-X', {
+	$('.rg').mask('00.000.000-X', {
 		translation: {
 			'X': {
 				pattern: /[xX\d]/,
